@@ -19,15 +19,19 @@ var computerConsoleFactory = {
 				
 				this.computerOption = this.generateOption()
 
-				this.playerOptionListener( this )
+				this.playerOptionListener( this.getOption(), this.getEndOfGameFunction() )
 			},
 			
-			renderOption:function()
+			getEndOfGameFunction:function()
 			{
-				this.$elem.innerText = this.computerOption
-				this.$elem.textContent = this.computerOption
+				var thisConsole = this
+				return function()
+				{
+					thisConsole.$elem.innerText = thisConsole.humanOption
+					thisConsole.$elem.textContent = thisConsole.humanOption
+				}
 			},
-			
+
 			getOption:function()
 			{
 				return this.computerOption

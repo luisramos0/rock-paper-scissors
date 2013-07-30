@@ -30,13 +30,14 @@ describe('humanConsole', function(){
 		
 		it('should add options to the DOM', function(){
 
-			var appendChildSpy = sinon.spy(testElement, 'appendChild')
-			var testOptions = ['1', '2', '3']
+			var testOptions = ['option1', 'option2', 'option3']
 			var optionsStub = sinon.stub(gameLogic, 'getAllOptions').returns(testOptions)
 			
 			humanConsole.render(testElement)
 			
-			expect( appendChildSpy.callCount ).to.be.equal( testOptions.length )
+			testOptions.forEach(function(option){
+				expect( testElement.innerHTML ).to.contain(option)
+			})
 		})
 		
 		it('should call playerOptionListener when option is clicked', function(){

@@ -15,35 +15,32 @@ var humanConsoleFactory = {
 			{
 				this.$elem = $elem
 				
-				gameLogic.getAllOptions().forEach(function(option)
-				{
-					var $newOptionButton = document.createElement('button');
-					$newOptionButton.setAttribute('class','option');
-					$newOptionButton.setAttribute('id', option);
-					$newOptionButton.innerHTML = option;
-					$elem.appendChild($newOptionButton);
+				gameLogic.getAllOptions().forEach(function(option) {
+					$elem.innerHTML += '<button class="option" id="' + option + '">' + option + '</button>'
 				})
-
+				
 				var $optionNodeList = document.getElementsByClassName('option')
-				for (var i = 0; i < $optionNodeList.length; ++i)
-				{
-					$optionNodeList[i].onclick = this.getOptionClickHandler()
-				}	
+				for ( var i = 0; i < $optionNodeList.length; ++i ) {
+					$optionNodeList[i].onclick = this.getOptionClickHandler()				
+				}				
 			},
 			
-			getOptionClickHandler:function()
+			getOptionClickHandler : function()
 			{
-				var thisConsole = this;
+				var thisConsole = this;				
 				return function() {
 					thisConsole.humanOption = this.id
-					thisConsole.playerOptionListener( thisConsole )
+					thisConsole.playerOptionListener( thisConsole.getOption(), thisConsole.getEndOfGameFunction() )
 				}
 			},
-			
-			renderOption:function()
+
+			getEndOfGameFunction:function()
 			{
-				this.$elem.innerText = this.humanOption
-				this.$elem.textContent = this.humanOption
+				var thisConsole = this
+				return function() {
+					thisConsole.$elem.innerText = thisConsole.humanOption
+					thisConsole.$elem.textContent = thisConsole.humanOption
+				}
 			},
 			
 			getOption:function()

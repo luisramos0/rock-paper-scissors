@@ -31,19 +31,12 @@ var rpsApp = {
 	
 	renderPlayerConsole:function( elemId, console, playerIndex )
 	{
-		console.setPlayerOptionListener( this.putPlayerOptionFunction( playerIndex ) )
+		console.setPlayerOptionListener( function( playerOption, playerEndOfGameFunction ) {
+			gameControl.addEndOfGameListener( playerEndOfGameFunction )
+			gameControl.putPlayerOption( playerIndex, playerOption )
+		})
+	
 		var $content = consoleTemplate.render( elemId, console.getTitle())
 		console.render($content)
-	},
-	
-	putPlayerOptionFunction:function(playerIndex)
-	{
-		return function(playerConsole)
-		{
-			gameControl.addEndOfGameListener(function(){
-				playerConsole.renderOption()
-			})
-			gameControl.putPlayerOption(playerIndex, playerConsole.getOption())
-		}
-	}	
+	}
 }

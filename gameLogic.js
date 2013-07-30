@@ -3,9 +3,9 @@
 **/
 var gameLogic = {
 
-		ROCK:'Rock',
-		PAPER:'Paper',
-		SCISSORS:'Scissors',
+		ROCK : 'Rock',
+		PAPER : 'Paper',
+		SCISSORS : 'Scissors',
 		
 		getAllOptions: function()
 		{
