@@ -1,5 +1,5 @@
 /**
- * Basic player console template (it would be better in an html template)
+ * Basic player console HTML template
 **/
 var consoleTemplate = {
 
