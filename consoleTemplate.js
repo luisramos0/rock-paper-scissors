@@ -3,30 +3,15 @@
 **/
 var consoleTemplate = {
 
-	render:function(console, elemId)
+	render:function(elemId, consoleTitle)
 	{
 		var $elem = document.getElementById( elemId )
-		
-		var $consoleTitle = $elem.getElementsByClassName('title')
-		if( $consoleTitle.length == 0 )
-		{
-			var $newTitleSpan = document.createElement('span');
-			$newTitleSpan.setAttribute('class','title');
-			$newTitleSpan.innerHTML = console.getTitle();
-			$elem.appendChild($newTitleSpan);
-		}
+			
+		var titleSpanHtml = '<span class="title">' + consoleTitle + '</span>' 
+		var contentDivHtml = '<div class="content"></div>'
+		$elem.innerHTML = titleSpanHtml + contentDivHtml
 		
 		var $consoleContent = $elem.getElementsByClassName('content')
-		if( $consoleContent.length == 0 )
-		{
-			var $newContentDiv = document.createElement('div');
-			$newContentDiv.setAttribute('class','content');
-			$elem.appendChild($newContentDiv);
-			$consoleContent[0] = $newContentDiv
-		}
-		$consoleContent[0].innerText = ''
-		$consoleContent[0].textContent = ''
-		
-		console.render($consoleContent[0])
+		return $consoleContent[0]
 	}	
 }

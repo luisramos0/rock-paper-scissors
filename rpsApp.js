@@ -22,17 +22,21 @@ var rpsApp = {
 		controlConsole.clearScoreBoard()
 		gameControl.reset()
 		
-		var consoles = this.getConsoles()			
+		var consoles = this.getConsoles()
+		
 		consoles[0].setPlayerOptionListener(this.putPlayerOptionFunction(0))	
+		var $content = consoleTemplate.render( 'console-player-1', console[0].getTitle())
+		console[0].render($content)
+		
 		consoles[1].setPlayerOptionListener(this.putPlayerOptionFunction(1))
-		consoleTemplate.render( consoles[0], 'console-player-1')
-		consoleTemplate.render( consoles[1], 'console-player-2')			
+		$content = consoleTemplate.render( 'console-player-2', consoles[1].getTitle())			
+		console[1].render($content)
 	},
 	
 	getConsoles:function()
 	{
 		var consoles = [computerConsoleFactory.create(), computerConsoleFactory.create()]	
-		if( document.querySelector('.play-mode:checked').value == 'human-computer' )
+		if( controlConsole.isHumanVsComputerModeSelected() )
 		{
 			consoles[0] = humanConsoleFactory.create()
 		}
