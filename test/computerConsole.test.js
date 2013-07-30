@@ -26,7 +26,7 @@ describe('computerConsole', function(){
 			}
 		})
 		
-		it('should add thinking message to the DOM', function(){
+		it('should add Thinking message to the DOM', function(){
 
 			computerConsole.render(testElement)
 			

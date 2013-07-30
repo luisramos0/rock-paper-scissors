@@ -1,24 +1,23 @@
-.console , h1 {
-	width:275px;
-	margin:20px;
+.console {
+	width: 200px;
 	float: left;
 }
 
-#score,span {
-	font-size:14pt;
+.console , h1 {
+	margin: 20px;
 }
 
 .control-console  {
-	margin-bottom:40px;
-	margin-left:20px;
+	margin: 40px 20px;
 	clear: left;
-	height:50px;
+	height: 70px;
 }
 
-#score {
-	margin-top:20px;
+.control-console .menu {
+	margin-top: 35px;
+	margin-left: 95px;
 }
 
-#score,#reset-button {
-	margin-left:95px;
+#score, span {
+	font-size: 14pt;
 }

@@ -6,7 +6,7 @@
 	
 	<script type="text/javascript" src="consoleTemplate.js"></script>
 	<script type="text/javascript" src="gameControl.js"></script>
-	<script type="text/javascript" src="rpsApp.js"></script>
+	<script type="text/javascript" src="app.js"></script>
 	
 	<script type="text/javascript" src="controlConsole.js"></script>
 	<script type="text/javascript" src="humanConsole.js"></script>
@@ -21,8 +21,10 @@
 	<div class="control-console">
 		<input class="play-mode" type="radio" name="play-mode" value="human-computer" checked>Player vs Computer</input>
 		<input class="play-mode" type="radio" name="play-mode" value="computer-computer">Computer vs Computer</input>
-		<div id="score"></div>
-		<button id="reset-button">Play Again</button>	
+		<div class="menu">
+			<div id="score"></div>
+			<button id="reset-button">Play Again</button>	
+		</div>
 	</div>	
 	
 	<div class="console" id="console-player-1">
@@ -30,7 +32,7 @@
 	<div class="console" id="console-player-2">
 	</div>
 	<script type="text/javascript">
-		rpsApp.bootstrap()
+		app.bootstrap()
  	</script>
   </body>
 </html>

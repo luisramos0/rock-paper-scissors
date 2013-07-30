@@ -1,7 +1,7 @@
 /**
  * Bootstraps web application
 **/
-var rpsApp = {
+var app = {
 
 	bootstrap:function()
 	{	
@@ -40,3 +40,6 @@ var rpsApp = {
 		console.render($content)
 	}
 }
+
+if (typeof module != 'undefined')
+	module.exports = app
