@@ -8,6 +8,7 @@
 	<script type="text/javascript" src="gameControl.js"></script>
 	<script type="text/javascript" src="rpsApp.js"></script>
 	
+	<script type="text/javascript" src="controlConsole.js"></script>
 	<script type="text/javascript" src="humanConsole.js"></script>
 	<script type="text/javascript" src="computerConsole.js"></script>
 	<script type="text/javascript" src="gameLogic.js"></script>
@@ -16,20 +17,18 @@
   </head>
   <body>
 	<h1>Rock Paper Scissors</h1>
-	
-	<div class="menu">
+
+	<div class="control-console">
 		<input class="play-mode" type="radio" name="play-mode" value="human-computer" checked>Player vs Computer</input>
 		<input class="play-mode" type="radio" name="play-mode" value="computer-computer">Computer vs Computer</input>
-	</div>
+		<div id="score"></div>
+		<button id="reset-button">Play Again</button>	
+	</div>	
 	
 	<div class="console" id="console-player-1">
 	</div>
 	<div class="console" id="console-player-2">
 	</div>
-	<br/>
-	<div id="score"></div>
-	<button id="reset-button">Play Again</button>
-	
 	<script type="text/javascript">
 		rpsApp.bootstrap()
  	</script>

@@ -1,6 +1,6 @@
-.console {
-	width:250px;
-	margin: 20px;
+.console , h1 {
+	width:275px;
+	margin:20px;
 	float: left;
 }
 
@@ -8,6 +8,17 @@
 	font-size:14pt;
 }
 
-.menu  {
-	margin-bottom:30px;
+.control-console  {
+	margin-bottom:40px;
+	margin-left:20px;
+	clear: left;
+	height:50px;
+}
+
+#score {
+	margin-top:20px;
+}
+
+#score,#reset-button {
+	margin-left:95px;
 }
