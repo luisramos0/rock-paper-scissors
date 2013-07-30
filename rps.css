@@ -1,0 +1,13 @@
+.console {
+	width:250px;
+	margin: 20px;
+	float: left;
+}
+
+#score,span {
+	font-size:14pt;
+}
+
+.menu  {
+	margin-bottom:30px;
+}

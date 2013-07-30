@@ -1,0 +1,56 @@
+/**
+ * Renders a 'thinking' message while it generates a random option
+**/
+var computerConsoleFactory = {
+	
+	create:function()
+	{
+		return {
+			getTitle:function()
+			{
+				return 'Computer'
+			},
+			
+			render:function($elem)
+			{
+				this.$elem = $elem
+			
+				var newSpan = document.createElement('span');
+				newSpan.innerHTML = 'Thinking...';
+				this.$elem.appendChild(newSpan)
+				
+				this.computerOption = this.generateOption()
+
+				this.playerOptionListener( this )
+			},
+			
+			renderOption:function()
+			{
+				this.$elem.innerText = this.computerOption
+				this.$elem.textContent = this.computerOption
+			},
+			
+			getOption:function()
+			{
+				return this.computerOption
+			},
+
+			setPlayerOptionListener:function(playerOptionListener)
+			{
+				this.playerOptionListener = playerOptionListener
+			},
+			
+			generateOption: function()
+			{
+				var allOptions = gameLogic.getAllOptions()
+				var numberOfOptions = allOptions.length
+			
+				var randomOptionsIndex = (Math.floor(Math.random()*11)) % numberOfOptions
+				return allOptions[randomOptionsIndex]
+			}
+		}
+	}
+}
+
+if (typeof module != 'undefined')
+	module.exports = computerConsoleFactory
