@@ -10,46 +10,48 @@ describe('gameControl', function(){
 
 		var player1TestOption = 'Rock'
 		var player2TestOption = 'Paper'			
-
-		var player1TestConsole = {getOption:function(){ return player1TestOption},renderOption:function(){}}			
-		var player2TestConsole = {getOption:function(){ return player2TestOption },renderOption:function(){}}			
-
-		var console1RenderOptionsSpy = sinon.spy(player1TestConsole, 'renderOption')
-		var console2RenderOptionsSpy = sinon.spy(player2TestConsole, 'renderOption')
-
-		var gameLogicSpy = sinon.spy(gameLogic, 'getScore')
-		gameControl.setScoreBoardUpdater( function(){} )
-			
+		var testScore = 'You Lost...'
+		
+		var endOfGameListenerSpy1 = sinon.spy()
+		var endOfGameListenerSpy2 = sinon.spy()
+					
 		beforeEach( function(){
 			gameControl.reset()
+			
+			gameControl.addEndOfGameListener( endOfGameListenerSpy1 )
+			gameControl.addEndOfGameListener( endOfGameListenerSpy2 )
 		})
 
-		it('should not show options or update score with only the first player option', function(){
+		it('should not notify all end of game listeners with only the first player option', function(){
 
-			gameControl.putPlayerOption( player1TestConsole, 0 )
+			gameControl.putPlayerOption( 0, player1TestOption )
 			
-			expect( console1RenderOptionsSpy.called ).to.be.false
-			expect( console2RenderOptionsSpy.called ).to.be.false
-			expect( gameLogicSpy.called ).to.be.false
+			expect( endOfGameListenerSpy1.called ).to.be.false
 		})
 		
-		it('should not show options or update score with only the second player option', function(){
+		it('should not notify all end of game listeners with only the second player option', function(){
 
-			gameControl.putPlayerOption( player2TestConsole, 1 )
+			gameControl.putPlayerOption( 1, player2TestOption )
 			
-			expect( console1RenderOptionsSpy.called ).to.be.false
-			expect( console2RenderOptionsSpy.called ).to.be.false
-			expect( gameLogicSpy.called ).to.be.false
+			expect( endOfGameListenerSpy2.called ).to.be.false
 		})		
 
-		it('should show options and update score with both player options', function(){
-
-			gameControl.putPlayerOption( player2TestConsole, 1 )
-			gameControl.putPlayerOption( player1TestConsole, 0 )
+		it('should notify all end of game listeners', function(){
 			
-			expect( console1RenderOptionsSpy.called ).to.be.true
-			expect( console2RenderOptionsSpy.called ).to.be.true
-			expect( gameLogicSpy.calledWith(player1TestOption, player2TestOption) ).to.be.true
+			gameControl.putPlayerOption( 1, player2TestOption )
+			gameControl.putPlayerOption( 0, player1TestOption )
+			
+			expect( endOfGameListenerSpy1.called ).to.be.true
+			expect( endOfGameListenerSpy2.called ).to.be.true
+		})
+		
+		it('should notify end of game listeners with calculated score', function(){
+		
+			gameControl.putPlayerOption( 1, player2TestOption )
+			gameControl.putPlayerOption( 0, player1TestOption )
+			
+			expect( endOfGameListenerSpy1.calledWith( testScore ) ).to.be.true
+			expect( endOfGameListenerSpy2.calledWith( testScore ) ).to.be.true
 		})		
 	})
 })

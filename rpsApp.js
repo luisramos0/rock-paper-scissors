@@ -19,7 +19,7 @@ var rpsApp = {
 			playModeNodeList[i].onclick = resetFormFunction
 		}
 	
-		gameControl.setScoreBoardUpdater( this.updateScoreBoard )	
+		gameControl.addEndOfGameListener( this.updateScoreBoard )
 		resetFormFunction()
 	},
 
@@ -54,11 +54,14 @@ var rpsApp = {
 		return consoles
 	},
 	
-	putPlayerOptionFunction:function(consoleIndex)
+	putPlayerOptionFunction:function(playerIndex)
 	{
 		return function(playerConsole)
 		{
-			gameControl.putPlayerOption(playerConsole, consoleIndex)
+			gameControl.addEndOfGameListener(function(){
+				playerConsole.renderOption()
+			})
+			gameControl.putPlayerOption(playerIndex, playerConsole.getOption())
 		}
 	}	
 }

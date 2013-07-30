@@ -1,5 +1,5 @@
 /**
- * Renders all options and allows user to select one option
+ * Renders all options and lets user to select one option
 **/
 var humanConsoleFactory = {
 

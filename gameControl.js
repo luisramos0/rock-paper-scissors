@@ -1,39 +1,41 @@
 /**
- * Game control logic: fetches players input, calls game logic and updates score
+ * Game control logic: receives players input, uses game logic and notifies end of game with final score
 **/
 var gameControl = {
 
-	consoles : [],
-
-	putPlayerOption : function(playerConsole, consoleIndex)
+	playerOptions : [],
+	endOfGameListeners : [],
+	
+	putPlayerOption : function(playerIndex, playerOption)
 	{
-		this.consoles[consoleIndex] = playerConsole
+		this.playerOptions[playerIndex] = playerOption
 		
-		if( this.consoles[0] != null && this.consoles[1] != null )
+		if( this.playerOptions[0] != null && this.playerOptions[1] != null )
 		{
-			this.consoles[0].renderOption()
-			this.consoles[1].renderOption()
-			
-			var player1Option = this.consoles[0].getOption()
-			var player2Option = this.consoles[1].getOption()
-				
-			var numericScore = gameLogic.getScore(player1Option, player2Option)
+			var numericScore = gameLogic.getScore(this.playerOptions[0], this.playerOptions[1])
 			var score = gameLogic.getScoreDescription(numericScore)
 			
-			this.updateScoreBoard(score)
-			
+			this.notifyEndOfGame(score)			
 			this.reset()
 		}
 	},
 	
 	reset:function()
 	{
-		this.consoles = []
+		this.playerOptions = []
 	},
 	
-	setScoreBoardUpdater:function ( updateScoreBoard )
+	addEndOfGameListener:function(endOfGameListener)
 	{
-		this.updateScoreBoard = updateScoreBoard
+		this.endOfGameListeners.push( endOfGameListener )
+	},
+	
+	notifyEndOfGame:function(score)
+	{
+		this.endOfGameListeners.forEach(function(endOfGameListener) {
+			endOfGameListener(score)
+		})
+		endOfGameListeners = []
 	}
 }
 
