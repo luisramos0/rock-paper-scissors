@@ -28,11 +28,9 @@ describe('computerConsole', function(){
 		
 		it('should add thinking message to the DOM', function(){
 
-			var appendChildSpy = sinon.spy(testElement, 'appendChild')
-			
 			computerConsole.render(testElement)
 			
-			expect( appendChildSpy.calledOnce ).to.be.true
+			expect( testElement.innerHTML ).to.contain('Thinking')
 		})
 		
 		it('should call playerOptionListener after rendering', function(){

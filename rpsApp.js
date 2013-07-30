@@ -9,38 +9,31 @@ var rpsApp = {
 		controlConsole.render( function() {
 			thisApp.resetGame()
 		})
-	
-		gameControl.addEndOfGameListener( function(score) {
-			controlConsole.updateScoreBoard(score)
-		})
-		
+			
 		this.resetGame()
 	},
 	
 	resetGame:function()
-	{
+	{	
 		controlConsole.clearScoreBoard()
 		gameControl.reset()
 		
-		var consoles = this.getConsoles()
-		
-		consoles[0].setPlayerOptionListener(this.putPlayerOptionFunction(0))	
-		var $content = consoleTemplate.render( 'console-player-1', console[0].getTitle())
-		console[0].render($content)
-		
-		consoles[1].setPlayerOptionListener(this.putPlayerOptionFunction(1))
-		$content = consoleTemplate.render( 'console-player-2', consoles[1].getTitle())			
-		console[1].render($content)
+		var player1Console = controlConsole.isHumanVsComputerModeSelected() ? humanConsoleFactory.create() : computerConsoleFactory.create()
+		this.renderPlayerConsole( 'console-player-1', player1Console, 0 )
+	
+		var player2Console = computerConsoleFactory.create()
+		this.renderPlayerConsole( 'console-player-2', player2Console, 1 )
+
+		gameControl.addEndOfGameListener( function(score) {
+			controlConsole.updateScoreBoard(score)
+		})
 	},
 	
-	getConsoles:function()
+	renderPlayerConsole:function( elemId, console, playerIndex )
 	{
-		var consoles = [computerConsoleFactory.create(), computerConsoleFactory.create()]	
-		if( controlConsole.isHumanVsComputerModeSelected() )
-		{
-			consoles[0] = humanConsoleFactory.create()
-		}
-		return consoles
+		console.setPlayerOptionListener( this.putPlayerOptionFunction( playerIndex ) )
+		var $content = consoleTemplate.render( elemId, console.getTitle())
+		console.render($content)
 	},
 	
 	putPlayerOptionFunction:function(playerIndex)

@@ -15,9 +15,7 @@ var computerConsoleFactory = {
 			{
 				this.$elem = $elem
 			
-				var $newSpan = document.createElement('span');
-				$newSpan.innerHTML = 'Thinking...';
-				this.$elem.appendChild($newSpan)
+				this.$elem.innerHTML = '<span>Thinking...</span>'
 				
 				this.computerOption = this.generateOption()
 
