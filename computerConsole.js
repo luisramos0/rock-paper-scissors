@@ -27,8 +27,8 @@ var computerConsoleFactory = {
 				var thisConsole = this
 				return function()
 				{
-					thisConsole.$elem.innerText = thisConsole.humanOption
-					thisConsole.$elem.textContent = thisConsole.humanOption
+					thisConsole.$elem.innerText = thisConsole.computerOption
+					thisConsole.$elem.textContent = thisConsole.computerOption
 				}
 			},
 
