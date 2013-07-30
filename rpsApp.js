@@ -4,9 +4,7 @@
 var rpsApp = {
 
 	bootstrap:function()
-	{
-		gameControl.setScoreBoardUpdater( this.updateScoreBoard )
-		
+	{	
 		var thisApp = this
 		var resetFormFunction = function() {
 			thisApp.resetForm()
@@ -20,7 +18,8 @@ var rpsApp = {
 		{
 			playModeNodeList[i].onclick = resetFormFunction
 		}
-		
+	
+		gameControl.setScoreBoardUpdater( this.updateScoreBoard )	
 		resetFormFunction()
 	},
 

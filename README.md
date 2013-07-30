@@ -1,6 +1,6 @@
-How to build: no build required, just download, unzip and open index.html with Chrome
+How to run: download, unzip and open index.html with Chrome
 
-How to run the tests: after installing node, mocha, chai and sinon (with npm install), go to the base folder and type mocha to run the tests
+How to build: install node, mocha, chai and sinon (with npm install), go to the base folder and type mocha to run the tests
 
 Dev Notes:
 - requirejs: I have assumed requirejs could be plugged in with minimal effort and all global scope polution would dissapear (both code and test)

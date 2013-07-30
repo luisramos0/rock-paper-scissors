@@ -15,19 +15,19 @@ var humanConsoleFactory = {
 			{
 				this.$elem = $elem
 				
-				gameLogic.getAllOptions().forEach(function(element)
+				gameLogic.getAllOptions().forEach(function(option)
 				{
-					var newOptionButton = document.createElement('button');
-					newOptionButton.setAttribute('class','option');
-					newOptionButton.setAttribute('id', element);
-					newOptionButton.innerHTML = element;
-					$elem.appendChild(newOptionButton);
+					var $newOptionButton = document.createElement('button');
+					$newOptionButton.setAttribute('class','option');
+					$newOptionButton.setAttribute('id', option);
+					$newOptionButton.innerHTML = option;
+					$elem.appendChild($newOptionButton);
 				})
 
-				var optionNodeList = document.getElementsByClassName('option')
-				for (var i = 0; i < optionNodeList.length; ++i)
+				var $optionNodeList = document.getElementsByClassName('option')
+				for (var i = 0; i < $optionNodeList.length; ++i)
 				{
-					optionNodeList[i].onclick = this.getOptionClickHandler()
+					$optionNodeList[i].onclick = this.getOptionClickHandler()
 				}	
 			},
 			
